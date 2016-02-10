@@ -17,10 +17,11 @@
 #include <sys/param.h>
 #include <sys/stat.h>
 #include <xar/xar.h>
+#include <xlocale.h>
 
 int compareFiles(const FTSENT **a, const FTSENT **b)
 {
-    return strcoll((*a)->fts_name, (*b)->fts_name);
+    return strcoll_l((*a)->fts_name, (*b)->fts_name, _c_locale);
 }
 
 NSString *pathRelativeToDirectory(NSString *directory, NSString *path)
